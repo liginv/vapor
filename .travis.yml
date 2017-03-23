@@ -1,22 +1,10 @@
-#language: objective-c
-
-#before_install:
-#- brew update
-#- if brew outdated | grep -qx xctool; then brew upgrade xctool; fi
-
-#script:
-#- touch /Users/travis/build/tannernelson/vapor/Sources/main.swift
-#- xctool clean build -project Vapor.xcodeproj -scheme Vapor
-#- xctool test -project Vapor.xcodeproj -scheme Tests
-
+os:
+  - linux
+  - osx
 language: generic
-
 sudo: required
 dist: trusty
-
-install:
-- mkdir swift
-- curl https://swift.org/builds/development/ubuntu1404/swift-DEVELOPMENT-SNAPSHOT-2016-01-25-a/swift-DEVELOPMENT-SNAPSHOT-2016-01-25-a-ubuntu14.04.tar.gz -s | tar xz -C swift &> /dev/null
-
+osx_image: xcode8
 script:
-- env PATH=$(pwd)/swift/swift-DEVELOPMENT-SNAPSHOT-2016-01-25-a-ubuntu14.04/usr/bin:$PATH swift build
+  - eval "$(curl -sL https://swift.vapor.sh/ci-3.1)"
+  - eval "$(curl -sL https://swift.vapor.sh/codecov)"
